@@ -7,9 +7,9 @@ pub struct Queen{
 }
 
 impl Queen{
-    pub fn new(is_white:bool, identity: char) -> Self
+    pub fn new(is_white:bool) -> Self
     {
-        return Queen{is_white,identity};
+        return Queen{is_white,'Q'};
     }
 }
 

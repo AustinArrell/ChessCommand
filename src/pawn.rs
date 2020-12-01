@@ -7,9 +7,9 @@ pub struct Pawn{
 }
 
 impl Pawn{
-    pub fn new(is_white:bool, identity: char) -> Self
+    pub fn new(is_white:bool) -> Self
     {
-        return Pawn{is_white,identity};
+        return Pawn{is_white,'P'};
     }
 }
 

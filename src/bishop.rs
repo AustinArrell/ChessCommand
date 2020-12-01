@@ -7,9 +7,9 @@ pub struct Bishop{
 }
 
 impl Bishop{
-    pub fn new(is_white:bool, identity: char) -> Self
+    pub fn new(is_white:bool) -> Self
     {
-        return Bishop{is_white,identity};
+        return Bishop{is_white,'B'};
     }
 }
 
