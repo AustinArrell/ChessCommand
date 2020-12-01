@@ -17,7 +17,11 @@ impl Piece for Pawn{
     fn verify_move(&self,pos1:&Pos, pos2:&Pos) -> bool
     //Takes in two positions on the board and returns if that is a valid move for this identity
     {
-        return true;
+        if self.is_white == true{
+            return pos2.file == pos1.file+1 && pos2.rank == pos1.rank;
+        }
+        return pos2.file == pos1.file-1 && pos2.rank == pos1.rank;
+
     }
 
     fn get_identity(&self) -> char
