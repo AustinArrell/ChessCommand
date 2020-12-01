@@ -9,7 +9,7 @@ pub struct Knight{
 impl Knight{
     pub fn new(is_white:bool) -> Self
     {
-        return Knight{is_white,'N'};
+        return Knight{is_white,identity:'N'};
     }
 }
 

@@ -9,7 +9,7 @@ pub struct Rook{
 impl Rook{
     pub fn new(is_white:bool) -> Self
     {
-        return Rook{is_white,'R'};
+        return Rook{is_white,identity:'R'};
     }
 }
 
