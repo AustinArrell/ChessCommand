@@ -22,10 +22,7 @@ impl Piece for King{
         //Distance formula to find the distance between 2 points. Kings move distance should be no more than 1
         //d=sqrt((x2​−x1​)^2+(y2​−y1​)^2)
         let distance_moved = (((pos2.file - pos1.file).pow(2) as f32) + ((pos2.rank - pos1.rank).pow(2)as f32)).sqrt();
-
-        if distance_moved as i8 == 1
-        {return true;}
-        return false;
+        return distance_moved as i32 == 1
     }
 
     fn get_identity(&self) -> char

@@ -21,9 +21,8 @@ impl Piece for Queen{
         let file_dif = (pos2.file - pos1.file).abs();
         let rank_dif = (pos2.rank - pos1.rank).abs();
         
-        if file_dif == rank_dif || (pos1.file == pos2.file || pos1.rank == pos2.rank)
-        {return true;}
-        return false;
+        return file_dif == rank_dif || (pos1.file == pos2.file || pos1.rank == pos2.rank);
+        
     }
 
     fn get_identity(&self) -> char

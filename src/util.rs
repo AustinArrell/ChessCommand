@@ -1,14 +1,14 @@
 pub struct Pos{
-    pub file:i8,
-    pub rank:i8,
+    pub rank:i32,
+    pub file:i32,
     
 }
 
 impl Pos
 {
-    pub fn new(file:i8,rank:i8)-> Self
+    pub fn new(rank:i32,file:i32)-> Self
     {
-        return Pos{file,rank};
+        return Pos{rank,file};
     }
 
 }
