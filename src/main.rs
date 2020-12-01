@@ -46,15 +46,6 @@ fn main()
     let k = King::new(true);
     let q = Queen::new(true);
 
-    //Testing the verify_move functions
-    let pos1 = Pos::new(4,5);
-    let pos2 = Pos::new(6,7);
-    println!("Rook result: {}",r.verify_move(&pos1,&pos2));
-    println!("Bishop result: {}",b.verify_move(&pos1,&pos2));
-    println!("King result: {}",k.verify_move(&pos1,&pos2));
-    println!("Queen result: {}",q.verify_move(&pos1,&pos2));
-    println!("Knight result: {}",n.verify_move(&pos1,&pos2));
-
     let running = true;
     while running
     {
@@ -72,13 +63,14 @@ fn main()
         if !start_pos.valid()
         { continue; }
 
+        input.clear();
         print!("Enter move: ");
 
         // ensure 'Enter move: ' is printed before we pause for user input
         io::stdout().flush().expect("Console write error");
 
         io::stdin().read_line(&mut input).expect("Could not read line!");
-
+        
         let piece =
         if input.chars().next().unwrap().is_uppercase()
         { input.chars().next().unwrap() }
@@ -95,7 +87,7 @@ fn main()
 
         if !dest_pos.valid()
         { continue; }
-
+    
         match piece
         {
             'Q' => println!("{}", q.verify_move(&start_pos, &dest_pos)),
@@ -108,5 +100,4 @@ fn main()
         }
     }
 
-    println!("\n____________________\n");
 }
