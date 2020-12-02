@@ -50,10 +50,6 @@ fn main()
     let k = King::new(true);
     let q = Queen::new(true);
 
-    let board = Board::new();
-    board.display(false);
-    return;
-
     let game = Game::new(true,true);
     game.run();
 
