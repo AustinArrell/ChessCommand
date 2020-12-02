@@ -2,14 +2,14 @@ use crate::piece::Piece;
 use crate::util::Pos;
 
 pub struct King{
-    pub is_white: bool,
+    pub white: bool,
     pub identity: char,
 }
 
 impl King{
-    pub fn new(is_white:bool) -> Self
+    pub fn new(white:bool) -> Self
     {
-        return King{is_white,identity: 'K'};
+        return King{white,identity: 'K'};
     }
 }
 
@@ -27,6 +27,9 @@ impl Piece for King{
     {
         return self.identity;
     }
+
+    fn is_white(&self) -> bool
+    { self.white }
 }
 
 

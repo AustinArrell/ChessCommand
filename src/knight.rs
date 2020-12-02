@@ -2,14 +2,14 @@ use crate::piece::Piece;
 use crate::util::Pos;
 
 pub struct Knight{
-    pub is_white: bool,
+    pub white: bool,
     pub identity: char,
 }
 
 impl Knight{
-    pub fn new(is_white:bool) -> Self
+    pub fn new(white:bool) -> Self
     {
-        return Knight{is_white,identity:'N'};
+        return Knight{white,identity:'N'};
     }
 }
 
@@ -20,7 +20,7 @@ impl Piece for Knight{
         let rank_dif = (pos2.rank - pos1.rank).abs();
         let file_dif = (pos2.file - pos1.file).abs();
         let distance_moved = (((pos2.file - pos1.file).pow(2) as f32) + ((pos2.rank - pos1.rank).pow(2)as f32)).sqrt();
-        
+
         return (file_dif == rank_dif+1 || file_dif == rank_dif-1) && distance_moved as i32 == 2
     }
 
@@ -28,4 +28,7 @@ impl Piece for Knight{
     {
         return self.identity;
     }
+
+    fn is_white(&self) -> bool
+    { self.white }
 }
