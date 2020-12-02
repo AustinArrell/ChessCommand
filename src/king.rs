@@ -17,10 +17,10 @@ impl Piece for King{
     fn verify_move(&self,pos1:&Pos, pos2:&Pos) -> bool
     //Takes in two positions on the board and returns if that is a valid move for this identity
     {
-        //Distance formula to find the distance between 2 points. Kings move distance should be no more than 1
-        //d=sqrt((x2​−x1​)^2+(y2​−y1​)^2)
-        let distance_moved = (((pos2.file - pos1.file).pow(2) as f32) + ((pos2.rank - pos1.rank).pow(2)as f32)).sqrt();
-        return distance_moved as i32 == 1
+        let rank_dif = (pos2.rank - pos1.rank).abs();
+        let file_dif = (pos2.file - pos1.file).abs();
+
+        return rank_dif <= 1 && file_dif <= 1;
     }
 
     fn get_identity(&self) -> char
