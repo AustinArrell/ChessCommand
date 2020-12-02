@@ -47,12 +47,12 @@ pub mod cons
         }
     }
 
-    pub fn set_bg(col:Color)
+    pub fn set_bg(col:&Color)
     {
         print!("\x1b[48;2;{};{};{}m", col.r, col.g, col.b);
     }
 
-    pub fn set_fg(col:Color)
+    pub fn set_fg(col:&Color)
     {
         print!("\x1b[38;2;{};{};{}m", col.r, col.g, col.b);
     }
@@ -62,7 +62,7 @@ pub mod cons
         print!("\x1b[0m");
     }
 
-    pub fn do_char(bg:Color, fg:Color ,c:char)
+    pub fn do_char(bg:&Color, fg:&Color ,c:char)
     {
         set_bg(bg);
         set_fg(fg);

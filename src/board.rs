@@ -52,8 +52,8 @@ impl Board
             black_col: Color::new(0, 0, 0),
             white_col: Color::new(255, 255, 255),
 
-            black_tile_col: Color::new(50, 50, 50),
-            white_tile_col: Color::new(205, 205, 205),
+            black_tile_col: Color::new(40, 40, 40),
+            white_tile_col: Color::new(100, 100, 100),
         }
     }
     pub fn display(&self, white:bool)
@@ -64,26 +64,39 @@ impl Board
         while file >= 0
         {
 
-            cons::set_fg(self.black_tile_col);
+            cons::set_fg(&self.white_tile_col);
             print!("{} ",file+1);
             cons::reset();
 
             for rank in 0..8
             {
                 cons::do_char(
-                    if tile {self.white_tile_col} else {self.black_tile_col},
-                    if self.grid[rank][file as usize].is_white() {self.white_col} else {self.black_col},
+                    // tile color
+                    if tile
+                    { &self.white_tile_col }
+                    else
+                    { &self.black_tile_col },
+
+                    // pice color
+                    if self.grid[rank][file as usize].is_white()
+                    { &self.white_col }
+                    else
+                    { &self.black_col },
+
                     self.grid[rank][file as usize].get_identity()
                 );
+
+                // flip tile
                 tile = !tile;
             }
+
             print!("\n");
             file -= 1;
             tile = !tile;
         }
 
         print!("  ");
-        cons::set_fg(self.black_tile_col);
+        cons::set_fg(&self.white_tile_col);
 
         for rank in 0..8
         {

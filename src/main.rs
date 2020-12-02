@@ -9,7 +9,9 @@
 mod piece;
 mod util;
 mod game;
+mod board;
 
+mod air;
 mod pawn;
 mod rook;
 mod knight;
@@ -17,6 +19,7 @@ mod bishop;
 mod king;
 mod queen;
 
+use air::Air;
 use pawn::Pawn;
 use rook::Rook;
 use knight::Knight;
@@ -27,7 +30,7 @@ use queen::Queen;
 use piece::Piece;
 use util::Pos;
 use game::Game;
-
+use board::Board;
 
 
 /*
@@ -47,9 +50,13 @@ fn main()
     let k = King::new(true);
     let q = Queen::new(true);
 
+    let board = Board::new();
+    board.display(true);
+    return;
+
     let game = Game::new(true,true);
     game.run();
 
-    
+
 
 }
