@@ -30,3 +30,43 @@ impl Pos
         return self.rank > 0 || self.file > 0;
     }
 }
+
+pub mod cons
+{
+    pub struct Color
+    {
+        pub r:u8,
+        pub g:u8,
+        pub b:u8,
+    }
+    impl Color
+    {
+        pub fn new(r:u8,g:u8,b:u8) -> Self
+        {
+            Color {r,g,b}
+        }
+    }
+
+    pub fn set_bg(col:Color)
+    {
+        print!("\x1b[48;2;{};{};{}m", col.r, col.g, col.b);
+    }
+
+    pub fn set_fg(col:Color)
+    {
+        print!("\x1b[38;2;{};{};{}m", col.r, col.g, col.b);
+    }
+
+    pub fn reset()
+    {
+        print!("\x1b[0m");
+    }
+
+    pub fn do_char(bg:Color, fg:Color ,c:char)
+    {
+        set_bg(bg);
+        set_fg(fg);
+        print!("{}",c);
+        reset();
+    }
+}
