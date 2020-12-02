@@ -51,7 +51,7 @@ fn main()
     let q = Queen::new(true);
 
     let board = Board::new();
-    board.display(true);
+    board.display(false);
     return;
 
     let game = Game::new(true,true);

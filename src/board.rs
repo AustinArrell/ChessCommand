@@ -58,12 +58,14 @@ impl Board
     }
     pub fn display(&self, white:bool)
     {
-        let mut file:i32 = 7;
+        let mut file:i32 = if white {7} else {0};
         let mut tile = true;
+        let end = if white {-1} else {8};
 
-        while file >= 0
+        while file != end
         {
 
+            // file specifier
             cons::set_fg(&self.white_tile_col);
             print!("{} ",file+1);
             cons::reset();
@@ -83,17 +85,18 @@ impl Board
                     else
                     { &self.black_col },
 
-                    self.grid[rank][file as usize].get_identity()
+                    self.grid[rank][file as usize].get_symbol()
                 );
 
-                // flip tile
                 tile = !tile;
             }
 
             print!("\n");
-            file -= 1;
+            file += if white {-1} else {1};
             tile = !tile;
         }
+
+        // rank specifiers
 
         print!("  ");
         cons::set_fg(&self.white_tile_col);
