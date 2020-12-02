@@ -1,33 +1,30 @@
 use crate::piece::Piece;
 use crate::util::Pos;
 
-pub struct Pawn{
+pub struct Pawn
+{
     pub white: bool,
     pub identity: char,
 }
 
-impl Pawn{
+impl Pawn
+{
     pub fn new(white:bool) -> Self
-    {
-        return Pawn{white,identity:'P'};
-    }
+    { Pawn {white,identity:'P'} }
 }
 
 impl Piece for Pawn{
     fn verify_move(&self,pos1:&Pos, pos2:&Pos) -> bool
     //Takes in two positions on the board and returns if that is a valid move for this identity
     {
-        if self.white == true{
-            return pos2.file == pos1.file+1 && pos2.rank == pos1.rank;
-        }
-        return pos2.file == pos1.file-1 && pos2.rank == pos1.rank;
-
+        if self.white
+        { pos2.file == pos1.file+1 && pos2.rank == pos1.rank }
+        else
+        { pos2.file == pos1.file-1 && pos2.rank == pos1.rank }
     }
 
     fn get_identity(&self) -> char
-    {
-        return self.identity;
-    }
+    { self.identity }
 
     fn is_white(&self) -> bool
     { self.white }

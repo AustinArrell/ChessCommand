@@ -1,16 +1,16 @@
 use crate::piece::Piece;
 use crate::util::Pos;
 
-pub struct Queen{
+pub struct Queen
+{
     pub white: bool,
     pub identity: char,
 }
 
-impl Queen{
+impl Queen
+{
     pub fn new(white:bool) -> Self
-    {
-        return Queen{white,identity:'Q'};
-    }
+    { Queen {white,identity:'Q'} }
 }
 
 impl Piece for Queen{
@@ -26,9 +26,7 @@ impl Piece for Queen{
     }
 
     fn get_identity(&self) -> char
-    {
-        return self.identity;
-    }
+    { self.identity }
 
     fn is_white(&self) -> bool
     { self.white }

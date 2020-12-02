@@ -1,19 +1,20 @@
 use crate::piece::Piece;
 use crate::util::Pos;
 
-pub struct Knight{
+pub struct Knight
+{
     pub white: bool,
     pub identity: char,
 }
 
-impl Knight{
+impl Knight
+{
     pub fn new(white:bool) -> Self
-    {
-        return Knight{white,identity:'N'};
-    }
+    { Knight {white,identity:'N'} }
 }
 
-impl Piece for Knight{
+impl Piece for Knight
+{
     fn verify_move(&self,pos1:&Pos, pos2:&Pos) -> bool
     //Takes in two positions on the board and returns if that is a valid move for this identity
     {
@@ -21,13 +22,11 @@ impl Piece for Knight{
         let file_dif = (pos2.file - pos1.file).abs();
         let distance_moved = (((pos2.file - pos1.file).pow(2) as f32) + ((pos2.rank - pos1.rank).pow(2)as f32)).sqrt();
 
-        return (file_dif == rank_dif+1 || file_dif == rank_dif-1) && distance_moved as i32 == 2
+        return (file_dif == rank_dif+1 || file_dif == rank_dif-1) && distance_moved as i32 == 2;
     }
 
     fn get_identity(&self) -> char
-    {
-        return self.identity;
-    }
+    { self.identity }
 
     fn is_white(&self) -> bool
     { self.white }
