@@ -1,50 +1,41 @@
-use std::io;
-use std::io::Write;
+
 use crate::util::Pos;
+use crate::util;
+use crate::board::Board;
 
 pub struct Game
 {
     running:bool,
     white_turn: bool,
     is_server: bool,
-    //board: Board
+    board: Board
 
 }
 
 impl Game
 {
-    pub fn new(white_turn: bool, is_server: bool)-> Self
+    pub fn new(white_turn: bool, is_server: bool )-> Self
     {
-        return Game{running:true,white_turn,is_server};
+        let board = Board::new(is_server);
+        return Game{running:true,white_turn,is_server,board};
     }
 
     pub fn run(&self)
     {
-        while(self.running)
+        self.board.display();
+        while self.running
         {
-            let start_pos = Pos::from(&Game::prompt("Enter starting square: "));
-            if !start_pos.valid()
-            { continue;}
-
-            let (piece,dest_string) = Game::parse_move(Game::prompt("Enter move:" ));
+            let (piece,dest_string) = Game::parse_move(util::prompt("\nEnter move:" ));
             let dest_pos = Pos::from(&dest_string);
             if !dest_pos.valid()
-            { continue; }
+
+            { println!("That move doesn't exsist!"); continue;}
+            self.board.move_piece(self.white_turn,piece,dest_pos);
+            //self.white_turn = !self.white_turn;  after we get move_piece finished we will pass turn back and forth.
         }
     }
 
-    fn prompt(message: &str) -> String
-    {
-        //Shows a message to the user and prompts them for input. returns said input
-        let mut input = String::new();
-        print!("{}",message);
-
-        // ensure message is printed before we pause for user input
-        io::stdout().flush().expect("Console write error");
-        io::stdin().read_line(&mut input).expect("Could not read line!");
-        return input;
-    }
-
+    
     fn parse_move(input: String) -> (char, String) 
     {
         //Takes a string and parses the move data from it

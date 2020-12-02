@@ -1,3 +1,6 @@
+use std::io;
+use std::io::Write;
+
 pub struct Pos{
     pub rank:i32,
     pub file:i32,
@@ -29,7 +32,20 @@ impl Pos
     {
         return self.rank > 0 || self.file > 0;
     }
+    
 }
+
+pub fn prompt(message: &str) -> String
+    {
+        //Shows a message to the user and prompts them for input. returns said input
+        let mut input = String::new();
+        print!("{}",message);
+
+        // ensure message is printed before we pause for user input
+        io::stdout().flush().expect("Console write error");
+        io::stdin().read_line(&mut input).expect("Could not read line!");
+        return input;
+    }
 
 pub mod cons
 {
